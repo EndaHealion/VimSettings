@@ -6,8 +6,8 @@ set expandtab
 filetype plugin on
 syntax on
 set guifont=Noto\ Mono\ 12
-set background=light
-colorscheme pyte
+set background=dark
+colorscheme gruvbox
 set clipboard=unnamedplus
 set hlsearch
 set ignorecase
@@ -45,4 +45,36 @@ imap <F10> <Esc>:noh<CR>a
 
 nmap <C-y> Atry {<CR>.<BS><CR>} catch (Exception e) {e.printStackTrace();}<CR><Esc>kk$
 imap <C-y> .<BS><Esc>Atry {<CR>.<BS><CR>} catch (Exception e) {e.printStackTrace();}<CR><Esc>kk$A
+
+nmap <C-n> :NERDTree<CR>
+nmap <C-t> :NERDTreeToggle<CR>
+nmap <C-f> :NERDTreeFind<CR>
+
+nmap <C-l> :call ToggleThemeMode()<CR>
+
+imap <C-v> .<BS><Esc>pA
+
+nnoremap <leader>q :call QuickfixToggle()<cr>
+
+let g:theme_mode = 0
+
+function! ToggleThemeMode()
+    if g:theme_mode
+        colorscheme onehalflight
+        let g:theme_mode = 0
+    else
+        set background=dark
+        colorscheme gruvbox
+        let g:theme_mode = 1
+    endif
+endfunction
+
+nmap Y y$
+
+nnoremap n nzzzv
+nnoremap J mzJ`z
+nnoremap N Nzzzv
+
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
