@@ -5,20 +5,21 @@ set shiftwidth=4
 set expandtab
 filetype plugin on
 syntax on
-set guifont=Noto\ Mono\ 11
+set guifont=Liberation\ Mono\ 12
 set background=dark
 set clipboard=unnamedplus
-packadd! dracula
-colorscheme dracula
+colorscheme blow
 set hlsearch
 set ignorecase
 set smartcase
-set cursorline
+"set cursorline
 set cindent
 set splitright
 set splitbelow
 set incsearch
 set relativenumber
+set guioptions=Ace
+
 
 nmap <F1> Aif () {<CR>.<BS><CR>}<Esc>k$
 nmap <F2> Afor (int i=0; i<size; i++) {<CR>.<BS><CR>}<Esc>k$
@@ -45,9 +46,6 @@ imap <F8> <Esc>:w<CR>a
 imap <F9> System.out.println();<Esc>hi
 imap <F10> <Esc>:noh<CR>a
 
-nmap <C-y> Atry {<CR>.<BS><CR>} catch (Exception e) {e.printStackTrace();}<CR><Esc>kk$
-imap <C-y> .<BS><Esc>Atry {<CR>.<BS><CR>} catch (Exception e) {e.printStackTrace();}<CR><Esc>kk$A
-
 nmap <C-n> :NERDTree<CR>
 nmap <C-t> :NERDTreeToggle<CR>
 nmap <C-f> :NERDTreeFind<CR>
@@ -61,26 +59,27 @@ let g:theme_mode = 1
 function! ToggleThemeMode()
     if g:theme_mode
         set background=light
-        colorscheme iceberg
+        colorscheme delek
         let g:theme_mode = 0
     else
         set background=dark
-        colorscheme gruvbox
+        colorscheme blow
         let g:theme_mode = 1
     endif
 endfunction
 
-nnoremap <C-;> :call ToggleFileTypeMode()<CR>
-let g:filetype_mode = 1
-function! ToggleFileTypeMode()
-    if g:filetype_mode
-        set filetype=off
-        let g:filetype_mode = 0
-    else
-        set filetype=on
-        let g:filetype_mode = 1
-    endif
-endfunction
+"nnoremap <C-;> :call ToggleFileTypeMode()<CR>
+"let g:filetype_mode = 1
+"function! ToggleFileTypeMode()
+"    if g:filetype_mode
+"        set filetype=off
+"        let g:filetype_mode = 0
+"    else
+"        set filetype=on
+"        let g:filetype_mode = 1
+"    endif
+"endfunction
+
 nmap Y y$
 
 nnoremap n nzzzv
@@ -222,20 +221,12 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-" Mappings for CoCList
-" Show all diagnostics.
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
 nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
-" Show commands.
 nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document.
 nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols.
 nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
 nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
