@@ -5,10 +5,10 @@ set shiftwidth=4
 set expandtab
 filetype plugin on
 syntax on
-set guifont=Liberation\ Mono\ 12
+set guifont=Liberation\ Mono\ 11
 set background=dark
 set clipboard=unnamedplus
-colorscheme blow
+colorscheme handmade-hero
 set hlsearch
 set ignorecase
 set smartcase
@@ -20,65 +20,41 @@ set incsearch
 set relativenumber
 set guioptions=Ace
 
-
-nmap <F1> Aif () {<CR>.<BS><CR>}<Esc>k$
-nmap <F2> Afor (int i=0; i<size; i++) {<CR>.<BS><CR>}<Esc>k$
-nmap <F3> Awhile () {<CR>.<BS><CR>}<Esc>k$
-
-imap <F1> .<BS><Esc>Aif () {<CR>.<BS><CR>}<Esc>kA
-imap <F2> .<BS><Esc>Afor (int i=0; i<size; i++) {<CR>.<BS><CR>}<Esc>kA
-imap <F3> .<BS><Esc>Awhile () {<CR>.<BS><CR>}<Esc>kA
-inoremap <F4> .<BS><Esc>A{<CR>.<BS><CR>}<Esc>kA
-
 nmap <F5> :w<CR>:make<CR>
-nmap <F6> :w<CR>:make build<CR>
-nmap <F7> :w<CR>:make run<CR>
-
 imap <F5> .<BS><Esc>:w<CR>:make<CR>
-imap <F6> .<BS><Esc>:w<CR>:make build<CR>
-imap <F7> .<BS><Esc>:w<CR>:make run<CR>
 
 nmap <F8> :w<CR>
 nmap <F9> *<Esc>:%s//
 nmap <F10> :noh<CR>
 
 imap <F8> <Esc>:w<CR>a
-imap <F9> System.out.println();<Esc>hi
 imap <F10> <Esc>:noh<CR>a
 
 nmap <C-n> :NERDTree<CR>
 nmap <C-t> :NERDTreeToggle<CR>
 nmap <C-f> :NERDTreeFind<CR>
 
-imap <C-v> .<BS><Esc>pA
+imap <C-v> .<BS><Esc>pa
 
 nnoremap <leader>q :call QuickfixToggle()<cr>
 
 nmap <C-l> :call ToggleThemeMode()<CR>
-let g:theme_mode = 1
+let g:theme_mode = 0
 function! ToggleThemeMode()
-    if g:theme_mode
-        set background=light
-        colorscheme delek
-        let g:theme_mode = 0
-    else
-        set background=dark
+    if g:theme_mode==0
         colorscheme blow
         let g:theme_mode = 1
+    elseif g:theme_mode==1
+        let g:theme_mode = 2
+        colorscheme delek
+    elseif g:theme_mode==2
+        colorscheme pablo
+        let g:theme_mode = 3
+    else
+        let g:theme_mode = 0
+        colorscheme handmade-hero
     endif
 endfunction
-
-"nnoremap <C-;> :call ToggleFileTypeMode()<CR>
-"let g:filetype_mode = 1
-"function! ToggleFileTypeMode()
-"    if g:filetype_mode
-"        set filetype=off
-"        let g:filetype_mode = 0
-"    else
-"        set filetype=on
-"        let g:filetype_mode = 1
-"    endif
-"endfunction
 
 nmap Y y$
 
@@ -91,6 +67,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'preservim/nerdtree'
     Plug 'dracula/vim', { 'as': 'dracula' }
     Plug 'tmsvg/pear-tree'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 set encoding=utf-8
