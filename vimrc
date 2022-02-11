@@ -12,7 +12,6 @@ colorscheme handmade-hero
 set hlsearch
 set ignorecase
 set smartcase
-"set cursorline
 set cindent
 set splitright
 set splitbelow
