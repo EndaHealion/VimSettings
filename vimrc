@@ -5,9 +5,9 @@ set shiftwidth=4
 set expandtab
 filetype plugin on
 syntax on
-set guifont=Liberation\ Mono\ 11
+set guifont=Liberation\ Mono:h11.5
 set background=dark
-set clipboard=unnamedplus
+set clipboard=unnamed
 colorscheme handmade-hero
 set hlsearch
 set ignorecase
@@ -17,6 +17,7 @@ set splitright
 set splitbelow
 set incsearch
 set relativenumber
+set backspace=indent,eol,start
 set guioptions=Ace
 
 nmap <F5> :w<CR>:make<CR>
@@ -35,6 +36,14 @@ nmap <C-f> :NERDTreeFind<CR>
 
 imap <C-v> .<BS><Esc>pa
 
+nmap <C-j> }
+vmap <C-j> }
+imap <C-j> .<BS><Esc>}a
+
+nmap <C-k> {
+vmap <C-k> {
+imap <C-k> .<BS><Esc>{a
+
 nnoremap <leader>q :call QuickfixToggle()<cr>
 
 nmap <C-l> :call ToggleThemeMode()<CR>
@@ -45,9 +54,9 @@ function! ToggleThemeMode()
         let g:theme_mode = 1
     elseif g:theme_mode==1
         let g:theme_mode = 2
-        colorscheme delek
+        colorscheme phoenix
     elseif g:theme_mode==2
-        colorscheme pablo
+        colorscheme newsprint
         let g:theme_mode = 3
     else
         let g:theme_mode = 0
@@ -206,4 +215,3 @@ nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
 nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
-
